@@ -1,19 +1,20 @@
 {
-	"name": "server",
-	"version": "1.0.50",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "bun run --watch src/index.ts",
-		"migrate": "bun run ./migrate.ts"
-	},
-	"dependencies": {
-		"drizzle-orm": "^0.30.10",
-		"elysia": "latest",
-		"postgres": "^3.4.4"
-	},
-	"devDependencies": {
-		"bun-types": "latest",
-		"drizzle-kit": "^0.21.4"
-	},
-	"module": "src/index.js"
+  "name": "server",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "migrate": "bun run ./migrate.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
+    "drizzle-orm": "^0.30.10",
+    "elysia": "latest",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "drizzle-kit": "^0.21.4"
+  },
+  "module": "src/index.js"
 }

@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { users } from "./schema";
+import * as schema from "./schema";
 
 const connectionString = Bun.env.DB_CONNECTION;
 
@@ -10,4 +10,4 @@ if (!connectionString) {
 
 // Disable prefetch as it is not supported for "Transaction" pool mode
 export const connection = postgres(connectionString, { prepare: false });
-export const db = drizzle(connection, { schema: { users } }) //{ schema });
+export const db = drizzle(connection, { schema }) //{ schema });
