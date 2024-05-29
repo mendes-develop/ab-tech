@@ -1,0 +1,6 @@
+{
+	"dialect": "postgresql",
+	"out": "./migrations-folder",
+	"schema": "./src/src/drizzle/schema.ts",
+	"breakpoints": false
+}
