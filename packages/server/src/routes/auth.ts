@@ -1,5 +1,5 @@
 import { Elysia, t } from "elysia";
-import { createUser } from "../db/drizzle/orm/users/user";
+import { createUser, getUser } from "../db/drizzle/orm/users/user";
 import { supabaseClient } from "../db/supabase/spabaseClient";
 
 export const auth = new Elysia({ prefix: "/auth" })
@@ -17,10 +17,12 @@ export const auth = new Elysia({ prefix: "/auth" })
       password: req.body.password,
     });
 
-    if (error || !data.user?.id) throw new Error("/signup: " + error ? error?.message : "no data");
+    if (error) throw new Error("/signup: " + error?.message);
+    if (!data.user?.id) throw new Error("no user id");
 
     const [user] = await createUser(req.body.name, req.body?.email, data.user?.id);
-    console.log("user created", user);
+    if (!user) throw new Error("Error creating user");
+
     return {
       user: {
         name: user.name,
@@ -30,25 +32,20 @@ export const auth = new Elysia({ prefix: "/auth" })
     };
   })
     .post("/login", async (req) => {
-      console.log("login", req.body);
-
       const { data, error } = await supabaseClient.auth.signInWithPassword({
         email: req.body.email,
         password: req.body.password,
       });
-
       if (error) throw new Error("/login:" + error.message);
 
-      // find the user in the DB
-
-      // const user = await createUser(req.body?.name, req.body.email as string);
-      // get on the user DB 
-      console.log("user logged", data);
+      const [user] = await getUser(data.user.id);
+      if (!user) throw new Error("Error getting user");
 
       return {
         user: {
-          name: data.user.id,
-          email: data.user.email,
+          id: user.id,
+          name: user.name,
+          email: user.email,
         },
       };
     }))
