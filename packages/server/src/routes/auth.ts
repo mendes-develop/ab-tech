@@ -28,6 +28,12 @@ export const auth = new Elysia({ prefix: "/auth" })
 
     auth_id.value = data.user.id;
     console.log(auth_id.value);
+    auth_id.set({
+      value: data.user.id,
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
+    })
 
     return {
       user: {
@@ -45,11 +51,16 @@ export const auth = new Elysia({ prefix: "/auth" })
       });
       if (error) throw new Error("/login:" + error.message);
 
-
       const [user] = await getUser(data.user.id);
       if (!user) throw new Error("Error getting user");
 
-      auth_id.value = data.user.id;
+      // auth_id.value = data.user.id;
+      auth_id.set({
+        value: data.user.id,
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
+      })
       console.log(auth_id.value);
 
       return {

@@ -1,15 +1,11 @@
-import { varchar } from 'drizzle-orm/pg-core';
+import { auth } from '@/src/routes/auth';
 import { Elysia } from "elysia";
-import { auth } from "./routes/auth";
+import swagger from '@elysiajs/swagger';
 
 const app = new Elysia()
-  .get("/", ({ cookie: auth_id }) => {
-
-    // @ts-ignore
-    // auth_id.value = "1234";
-
-    console.log(auth_id.value);
-
+  .use(swagger())
+  .get("/", ({ cookie: { auth_id } }) => {
+    console.log(auth_id.value)
 
     return {
       cookie: auth_id.value,
