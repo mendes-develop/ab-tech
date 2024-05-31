@@ -7,6 +7,7 @@
     "migrate": "bun run ./migrate.ts"
   },
   "dependencies": {
+    "@elysiajs/jwt": "^1.0.2",
     "@elysiajs/swagger": "^1.0.5",
     "@supabase/supabase-js": "^2.43.4",
     "drizzle-orm": "^0.30.10",
