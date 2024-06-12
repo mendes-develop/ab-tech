@@ -1,16 +1,62 @@
-import { jwtMiddleware } from "@/src/plugins/jtw";
-import Elysia, { t } from "elysia";
-import { supabaseClient } from "../db/supabase/spabaseClient";
+import { auth } from '@/src/routes/auth';
+import { jwtMiddleware, refreshMiddleware } from "@/src/plugins/jtw";
+import Elysia, { Cookie, t } from "elysia";
+import { supabaseClient } from "../db/supabase/supabaseClient";
+
+const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string) => {
+  cookie.set({
+    value: JTW_TOKEN,
+    path: "/",
+    httpOnly: true,
+    // expires: !exp ? undefined : new Date(Date.now() + time_exp[exp]),
+  })
+}
+
 
 export const base_app = new Elysia()
   .use(jwtMiddleware)
-  .derive({ as: 'global' }, async ({ jwt, cookie: { access } }) => {
-    console.log({ access: access.value })
-    const { data, error } = await supabaseClient.auth.getUser(access.value);
+  .use(refreshMiddleware)
+  .derive({ as: 'global' }, async ({ set, jwt, jtwRefresh, headers, cookie: { access, refresh } }) => {
+    console.log("derived")
 
-    console.log(data.user, access.value)
+    if (!access.value || !refresh.value) return ({ user: null })
 
-    return ({ user: data?.user?.email })
+    const accessPayload = await jwt.verify(access.value)
+    const refreshPayload = await jtwRefresh.verify(refresh.value)
+
+    console.log({
+      accessPayload,
+      refreshPayload,
+    })
+
+    if (accessPayload) {
+      console.log("access valid")
+      return ({ user: accessPayload })
+    }
+
+    if (refreshPayload) {
+      console.log("refreshing")
+      const access_token = await jwt.sign({
+        auth_id: refreshPayload.auth_id,
+        user_id: refreshPayload.user_id,
+      })
+
+      const refresh_token = await jtwRefresh.sign({
+        auth_id: refreshPayload.auth_id,
+        user_id: refreshPayload.user_id,
+      })
+
+      storeCookie(access, access_token);
+      storeCookie(refresh, refresh_token)
+      set.headers['Authorization'] = access_token
+
+      return ({ user: access_token })
+    }
+
+    access.remove()
+    refresh.remove()
+
+    return ({ user: null })
   })
   .guard({
     cookie: t.Cookie({

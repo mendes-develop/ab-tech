@@ -5,7 +5,6 @@ import { appEvents } from './routes/private/events';
 
 const app = new Elysia()
   .use(swagger())
-
   .get("/", () => {
     return {
       resp: "Hello Elysia"

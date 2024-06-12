@@ -1,7 +1,7 @@
 import { Elysia, t, Cookie } from "elysia";
 import { createUser, getUser } from "../db/drizzle/orm/users/user";
 import { supabaseClient } from "../db/supabase/spabaseClient";
-import { SwaggerTags, jwtMiddleware } from "../plugins/jtw";
+import { SwaggerTags } from "../plugins/jtw";
 import { base_app } from "./base";
 
 const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string) => {
@@ -23,33 +23,36 @@ export const auth =
       }, {
         detail: SwaggerTags.Auth,
       })
-      .post("/signup", async ({ jwt, body, cookie: { access, refresh } }) => {
+      .post("/signup", async ({ jwt, set, body, cookie: { access, refresh } }) => {
 
         const { data, error } = await supabaseClient.auth.signUp({
           email: body.email,
           password: body.password,
         });
 
-        if (error) throw new Error("/signup: " + error?.message);
+        if (error && !data.user) throw new Error("/signup: " + error?.message);
         if (!data.user?.id) throw new Error("no user id");
 
         const [user] = await createUser(body?.email, body?.email, data.user?.id);
         if (!user) throw new Error("Error creating user");
 
-        // const JTW_TOKEN = await jwt.sign({ auth_id: data.user.id })
-        // console.log({ JTW_TOKEN })
-        const refreshToken = data.session?.refresh_token!
-        const accessToken = data.session?.access_token!
+        const access_token = await jwt.sign({
+          auth_id: data.user.id,
+          user_id: user.id,
+          exp: Math.floor(Date.now() / 1000),
 
-        console.log(data.session?.user)
+        })
 
-        storeCookie(access, accessToken);
-        storeCookie(refresh, refreshToken);
+        const refresh_token = await jwt.sign({
+          auth_id: data.user.id,
+          user_id: user.id,
+        })
 
-        return {
-          user: data,
-        };
+        storeCookie(access, access_token);
+        storeCookie(refresh, refresh_token);
+        set.headers['Authorization'] = access_token
 
+        return { user, access_token, refresh_token }
       }
         , {
           detail: SwaggerTags.Auth,
@@ -69,11 +72,8 @@ export const auth =
         const [user] = await getUser(data.user.id);
         if (!user) throw new Error("Error getting user");
 
-        // console.log(data.session.access_token)
-        const accessToken = data.session.access_token!
-
-        storeCookie(access, accessToken);
-        storeCookie(refresh, data.session.refresh_token!)
+        storeCookie(access, data.session.access_token);
+        storeCookie(refresh, data.session.refresh_token)
 
         return {
           user: data,
@@ -86,21 +86,15 @@ export const auth =
         })
       })
       .post('/refresh-token', async ({ jwt, set, cookie: { access, refresh }, user }) => {
-        // console.log({
-        //   refresh: refresh.value,
-        //   access: access.value,
-        // })
-        // take the refresh token and make the new token
         const { data, error } = await supabaseClient.auth.refreshSession({ refresh_token: refresh.value })
 
         if (error) return set.status = "Unauthorized"
         if (!data.session?.access_token) return set.status = "Unauthorized"
         if (!data.session?.refresh_token) return set.status = "Unauthorized"
 
+        // create your own token and access token
         const accessToken = data.session?.access_token
         const refreshToken = data.session?.refresh_token
-
-        // console.log(data.session.user)
 
         storeCookie(access, accessToken);
         storeCookie(refresh, data.session.refresh_token)
