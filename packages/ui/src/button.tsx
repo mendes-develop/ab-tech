@@ -18,3 +18,5 @@ export const Button = ({ children, className, appName }: ButtonProps) => {
     </button>
   );
 };
+
+export type MalucoBelezAa = "Verdadeiro" | "Falso";

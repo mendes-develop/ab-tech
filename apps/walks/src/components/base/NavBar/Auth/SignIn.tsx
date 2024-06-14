@@ -33,9 +33,14 @@ export function SignIn({ children }: { children: React.ReactNode }) {
   const { refetch } = useGetVideosQuery()
 
   const handleSubmit = async (data: UserInput) => {
-    await createCookie(data)
-    closePopover()
-    refetch()
+    try {
+      console.log("herer")
+      await createCookie(data)
+      closePopover()
+      refetch()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

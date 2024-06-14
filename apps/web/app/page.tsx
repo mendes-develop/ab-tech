@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card } from "@repo/ui/card";
 import { Code } from "@repo/ui/code";
-import { Button } from "@repo/ui/button";
+import { Button, MalucoBelezAa } from "@repo/ui/button";
 import { ProfileData, getDeputados } from "../axios/instance";
 
 
