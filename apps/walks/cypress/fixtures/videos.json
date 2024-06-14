@@ -1,0 +1,22 @@
+{
+	"videos": [
+		{
+			"created_at": "2024-05-20T18:47:33.013218+00:00",
+			"description": "Test Lorem Ipsum",
+			"id": "1",
+			"num_comments": 3,
+			"title": "Mock Data",
+			"user_id": "alex_mendes",
+			"video_url": "https://vimeo.com/524933864"
+		},
+		{
+			"created_at": "2024-05-20T18:39:49.287316+00:00",
+			"description": "test1",
+			"id": "QgnyA8hsiyLvfxonyLR9",
+			"num_comments": 1,
+			"title": "Test1",
+			"user_id": "alex_mendes",
+			"video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+		}
+	]
+}
