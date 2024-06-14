@@ -1,15 +1,23 @@
 import { Elysia, t, Cookie } from "elysia";
 import { createUser, getUser } from "../db/drizzle/orm/users/user";
-import { supabaseClient } from "../db/supabase/spabaseClient";
+import { supabaseClient } from "../db/supabase/supabaseClient";
 import { SwaggerTags } from "../plugins/jtw";
 import { base_app } from "./base";
 
-const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string) => {
+const time_exp = {
+  One_Minute: 1000 * 60,
+  Five_Minutes: 1000 * 60 * 5,
+} as const;
+
+// const One_Minute = 1000 * 60;
+// const Five_Minutes = One_Minute * 5;
+
+const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string, exp?: keyof typeof time_exp) => {
   cookie.set({
     value: JTW_TOKEN,
     path: "/",
     httpOnly: true,
-    expires: new Date(Date.now() + 60 * 60 * 24 * 7 * 1000)
+    // expires: !exp ? undefined : new Date(Date.now() + time_exp[exp]),
   })
 }
 
@@ -23,7 +31,7 @@ export const auth =
       }, {
         detail: SwaggerTags.Auth,
       })
-      .post("/signup", async ({ jwt, set, body, cookie: { access, refresh } }) => {
+      .post("/signup", async ({ jwt, jtwRefresh, set, body, cookie: { access, refresh } }) => {
 
         const { data, error } = await supabaseClient.auth.signUp({
           email: body.email,
@@ -43,12 +51,12 @@ export const auth =
 
         })
 
-        const refresh_token = await jwt.sign({
+        const refresh_token = await jtwRefresh.sign({
           auth_id: data.user.id,
           user_id: user.id,
         })
 
-        storeCookie(access, access_token);
+        storeCookie(access, access_token, 'One_Minute');
         storeCookie(refresh, refresh_token);
         set.headers['Authorization'] = access_token
 
@@ -61,7 +69,7 @@ export const auth =
             email: t.String(),
           })
         })
-      .post("/login", async ({ jwt, body, cookie: { access, refresh } }) => {
+      .post("/login", async ({ set, jtwRefresh, jwt, body, cookie: { access, refresh } }) => {
         const { data, error } = await supabaseClient.auth.signInWithPassword({
           email: body.email,
           password: body.password,
@@ -72,12 +80,21 @@ export const auth =
         const [user] = await getUser(data.user.id);
         if (!user) throw new Error("Error getting user");
 
-        storeCookie(access, data.session.access_token);
-        storeCookie(refresh, data.session.refresh_token)
+        const access_token = await jwt.sign({
+          auth_id: data.user.id,
+          user_id: user.id,
+        })
 
-        return {
-          user: data,
-        };
+        const refresh_token = await jtwRefresh.sign({
+          auth_id: data.user.id,
+          user_id: user.id,
+        })
+
+        storeCookie(access, access_token, 'One_Minute');
+        storeCookie(refresh, refresh_token)
+        set.headers['Authorization'] = access_token
+
+        return { user, access_token, refresh_token }
       }, {
         detail: SwaggerTags.Auth,
         body: t.Object({
@@ -96,7 +113,7 @@ export const auth =
         const accessToken = data.session?.access_token
         const refreshToken = data.session?.refresh_token
 
-        storeCookie(access, accessToken);
+        storeCookie(access, accessToken, 'One_Minute');
         storeCookie(refresh, data.session.refresh_token)
 
         return {
