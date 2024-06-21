@@ -1,6 +1,8 @@
 import axios from "axios"
 import { randomNameSlug } from "../faker"
 import { getCookieUserId } from "@/cookies/cookies"
+import { App } from "@repo/api/server"
+import { treaty } from "@elysiajs/eden";
 
 type CreateVideoInput = {
   title: string
@@ -13,9 +15,18 @@ type CreateCommentInput = {
   content: string
 }
 
+export const client = treaty<App>("localhost:3000")
+
 const axiosInstance = axios.create({
   baseURL: "https://take-home-assessment-423502.uc.r.appspot.com/api",
 })
+
+const userSignUp = async (email: string, password: string) => {
+  return await client.auth.signup.post({
+    email,
+    password,
+  })
+}
 
 export const getVideos = async () => {
   const user_id = await getCookieUserId()

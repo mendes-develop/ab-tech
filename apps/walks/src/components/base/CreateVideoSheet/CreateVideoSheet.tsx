@@ -23,7 +23,7 @@ import { useMutation } from "@tanstack/react-query"
 import { createVideo } from "@/lib/api/axios"
 import { useSheetState } from "./hooks"
 import { QUERY_KEYS } from "@/lib/api/api"
-import { getQueryClient } from "@/provider"
+import { getQueryClient } from "@repo/ui/query-provider"
 import { toast, useToast } from "@/components/ui/use-toast"
 
 export function CreateVideoSheet() {

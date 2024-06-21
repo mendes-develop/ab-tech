@@ -1,5 +1,5 @@
 'use client'
-import { useGetVideosQuery } from "@/lib/api/api";
+// import { useGetVideosQuery } from "@/lib/api/api";
 import { trimString } from "@/utils";
 import Link from "next/link";
 import ReactPlayer from "react-player";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { SkeletonList } from "./LoadingState";
 import { error } from "console";
 import { ErrorAlert } from "./ErrorState";
+import { useGetVideosQuery } from "@/lib/api/api";
 
 export type VideoListProps = {
   title: string;
@@ -84,7 +85,7 @@ const SigninText = () => {
         variant={"outline"}
         onClick={openPopover}
         className="text-lg text-primary">
-        Sign in to start creating videos
+        Sign in
       </Button>
     </div>
   )

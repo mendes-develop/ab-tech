@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover"
 import { usePopoverState } from "./hooks"
 import { deleteCookie } from "@/cookies/cookies"
-import { getQueryClient } from "@/provider"
+import { getQueryClient } from "@repo/ui/query-provider"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/navigation"
 export function SignOut({ children }: { children: React.ReactNode }) {

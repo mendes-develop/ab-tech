@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form"
 import { createCookie } from "@/cookies/cookies"
 import { useGetVideosQuery } from "@/lib/api/api"
+import Link from "next/link"
 
 export function SignIn({ children }: { children: React.ReactNode }) {
   const {
@@ -98,6 +99,14 @@ export function SignIn({ children }: { children: React.ReactNode }) {
               </Button>
             </form>
           </Form>
+          <Link href="/signup">
+            <div className="flex flex-row">
+              Not a member?
+              <p className="text-blue-500">
+                {" Sign up here."}
+              </p>
+            </div>
+          </Link>
         </div>
       </PopoverContent>
     </Popover>

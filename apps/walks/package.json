@@ -10,6 +10,8 @@
 		"test": "cypress run"
 	},
 	"dependencies": {
+		"@repo/api": "*",
+		"@repo/ui": "*",
 		"@hookform/resolvers": "^3.4.0",
 		"@radix-ui/react-dialog": "^1.0.5",
 		"@radix-ui/react-icons": "^1.3.0",

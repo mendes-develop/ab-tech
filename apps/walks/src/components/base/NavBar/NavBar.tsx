@@ -5,7 +5,7 @@ import { Auth } from "./Auth/Auth"
 import { Suspense } from "react"
 import { getCookieUserId } from "@/cookies/cookies"
 
-export const NavBar = async ({ userId }: {
+export const NavBar = ({ userId }: {
   userId?: string
 }) => {
 

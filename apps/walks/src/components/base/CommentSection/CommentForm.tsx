@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query"
 import { createComment } from "@/lib/api/axios"
 import { useParams } from "next/navigation"
 import { QUERY_KEYS } from "@/lib/api/api"
-import { getQueryClient } from "@/provider"
+import { getQueryClient } from "@repo/ui/query-provider"
 import { useToast } from "@/components/ui/use-toast"
 
 export const CommentForm = () => {

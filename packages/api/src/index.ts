@@ -1,10 +1,14 @@
 import { Elysia } from 'elysia'
+import { auth } from './routes/auth.js'
+import { swagger } from '@elysiajs/swagger'
 
 const app = new Elysia()
+  .use(swagger())
   .get('/', () => 'hello')
   .get('/hi', () => ({
     hello: 123
   }))
+  .use(auth)
   .listen(4001)
 
 console.log('🦊 server started at http://localhost:4001')

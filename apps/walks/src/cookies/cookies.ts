@@ -16,13 +16,13 @@ const combineName = (fullName: Name) => {
 }
 
 export async function createCookie(data: Name) {
-  cookies().set('user_id', combineName(data))
+  cookies().set('access', combineName(data))
 }
 
 export async function getCookieUserId() {
-  return cookies().get('user_id')
+  return cookies().get('access')
 }
 
 export async function deleteCookie() {
-  cookies().delete('user_id')
+  cookies().delete('access')
 }

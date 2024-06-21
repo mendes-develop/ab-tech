@@ -1,7 +1,10 @@
-import { auth } from '@/src/routes/auth';
-import { jwtMiddleware, refreshMiddleware } from "@/src/plugins/jtw";
-import Elysia, { Cookie, t } from "elysia";
-import { supabaseClient } from "../db/supabase/supabaseClient";
+// import { auth } from '@/src/routes/auth';
+// import { jwtMiddleware, refreshMiddleware } from "@/src/plugins/jtw";
+// import Elysia, { Cookie, t } from "elysia";
+import { Cookie, Elysia, t } from "elysia";
+// import { supabaseClient } from "../db/supabase/supabaseClient";
+// import Elysia from "elysia";
+import { jwtMiddleware, refreshMiddleware } from "../plugins/jtw.js";
 
 const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string) => {
   cookie.set({

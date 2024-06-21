@@ -1,19 +1,20 @@
 {
-	"name": "@repo/api",
-	"version": "0.0.0",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"dev": "bun --watch src/index.ts",
-		"build": "bun build src/index.ts",
-		"start": "NODE_ENV=production bun src/index.ts",
-		"test": "bun test"
-	},
-	"exports": {
-		"./server": "./src/index.ts"
-	},
-	"dependencies": {
-		"elysia": "^1.0.23"
-	},
-	"devDependencies": {}
+  "name": "@repo/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts",
+    "start": "NODE_ENV=production bun src/index.ts",
+    "test": "bun test"
+  },
+  "exports": {
+    "./server": "./src/index.ts"
+  },
+  "dependencies": {
+    "@elysiajs/swagger": "^1.0.5",
+    "elysia": "^1.0.23"
+  },
+  "devDependencies": {}
 }
