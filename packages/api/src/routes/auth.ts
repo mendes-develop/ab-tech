@@ -43,8 +43,8 @@ export const auth =
           password: body.password,
         });
 
-        if (error && !data.user) throw new Error("/signup: " + error?.message);
-        if (!data.user?.id) throw new Error("no user id");
+        if (error && !data.user) return new Error("/signup: " + error?.message);
+        if (!data.user?.id) return new Error("no user id");
 
         const [user] = await createUser(body?.email, body?.email, data.user?.id);
         if (!user) throw new Error("Error creating user");

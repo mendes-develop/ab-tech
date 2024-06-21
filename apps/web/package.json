@@ -10,9 +10,10 @@
 	},
 	"dependencies": {
 		"@elysiajs/eden": "^1.0.14",
-		"@repo/server": "*",
 		"@repo/api": "*",
+		"@repo/server": "*",
 		"@repo/ui": "*",
+		"@tanstack/react-query": "^5.45.1",
 		"next": "^14.1.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"

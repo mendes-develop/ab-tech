@@ -5,13 +5,18 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./signup": "./src/base/signup/SignUp.tsx",
+    "./toaster": "./@/components/ui/toaster.tsx",
+    "./query-provider": "./src/provider/QueryProvider.tsx",
+    "./deputados": "./src/base/deputados/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
+    "@repo/api": "*",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
@@ -22,5 +27,9 @@
     "eslint": "^8.57.0",
     "react": "^18.2.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.45.0",
+    "next": "^14.2.4"
   }
 }
