@@ -1,0 +1,16 @@
+{
+  "name": "@repo/htmx_server",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.tsx",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "type": "module"
+}

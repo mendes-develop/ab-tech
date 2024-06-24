@@ -25,6 +25,10 @@
     "packages/*"
   ],
   "dependencies": {
-    "axios": "^1.7.2"
+    "@elysiajs/html": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
+    "axios": "^1.7.2",
+    "elysia": "^1.0.25",
+    "typed-html": "^3.0.1"
   }
 }
