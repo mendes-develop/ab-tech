@@ -1,7 +1,9 @@
 {
-	"extends": "@repo/typescript-config/react-library.json",
+	// "extends": "@repo/typescript-config/react-library.json",
 	"compilerOptions": {
-		"outDir": "dist"
+		"outDir": "dist",
+		"jsx": "react",
+		"jsxFactory": "elements.createElement"
 	},
 	"include": ["src", "@/components/ui"],
 	"exclude": ["node_modules", "dist"]
