@@ -17,7 +17,6 @@ const app = new Elysia()
   .use(staticPlugin())
   .get('/', ({ html }) => html(
     <Layout>
-      {/*  @ts-ignore */}
       <body class={`h-screen`}>
         <div class="border h-full border-gray-300 rounded-md flex flex-row gap-4 overflow-y-scroll overflow-x-hidden bg-blue-1">
           <NavBar />
