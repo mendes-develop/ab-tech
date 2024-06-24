@@ -18,13 +18,14 @@ const app = new Elysia()
   .get('/', ({ html }) => html(
     <Layout>
       {/*  @ts-ignore */}
-      <body class={`h-svh p-4`}>
-        <div class="border border-gray-300 rounded-md p-2 flex flex-row gap-4">
+      <body class={`h-screen`}>
+        <div class="border h-full border-gray-300 rounded-md flex flex-row gap-4 overflow-y-scroll overflow-x-hidden bg-blue-1">
           <NavBar />
           <div
             hx-get="/todos"
             hx-trigger="load"
-            xh-swape="outerHTML"
+            hx-swape="outerHTML"
+            class="flex flex-1 flex-col"
           />
         </div>
       </body>

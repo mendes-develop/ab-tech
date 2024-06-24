@@ -10,6 +10,13 @@ const getTodos = async () => {
   return todos.slice(0, 10)
 }
 
+const todoFactory = (todo: Pick<Todo, "title" | "userId">) => ({
+  id: crypto.randomUUID(),
+  title: todo.title,
+  completed: false,
+  userId: todo.userId,
+} as Todo)
+
 export const todosRoute = new Elysia({ prefix: '/todos' })
   .onBeforeHandle(async ({ cookie: { ronaldo } }) => {
     ronaldo.value = (Number(ronaldo.value) || 0) + 1
@@ -21,40 +28,70 @@ export const todosRoute = new Elysia({ prefix: '/todos' })
     console.log(ronaldo.value)
 
     return (
-      <div class={"border border-gray-300 rounded-md p-2 flex  flex-col gap-4"}>
+      <div class={"flex flex-col flex-1 gap-4 overflow-y-scroll"}>
         <TodoForm />
         <TodoList todos={todos} />
       </div>
     )
   })
   .post('/', async ({ body: { name }, cookie: { ronaldo } }) => {
-    const newTodo = {
-      id: crypto.randomUUID(),
-      title: name,
-      completed: false,
-      userId: ronaldo.value
-    } as Todo
+    if (!name) {
+      return (
+        <div>
+          <h2>Name is required</h2>
+        </div>
+      )
+    }
 
-    return (
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <TodoElement {...newTodo} />
-      </div>
-    )
+    const newTodo = todoFactory({
+      title: name,
+      userId: ronaldo.value,
+    })
+
+    return <TodoElement {...newTodo} />
   }, {
     body: t.Object({
       name: t.String(),
     })
   })
-  .put('/:id', async ({ cookie: { ronaldo }, params: { id } }) => {
-    const todos = await getTodos()
+  .post('/:id/completed', async ({ params: { id }, }) => {
 
-    return (
-      <div class={"border border-gray-300 rounded-md p-2"}>
-        <TodoList todos={todos} />
-      </div>
-    )
+    const todos = await getTodos()
+    const todo = todos.find(todo => todo.id == id)
+
+    console.log({
+      id, todos
+    })
+
+
+    if (!todo) {
+      return (
+        <div>
+          <h2>Todo not found</h2>
+        </div>
+      )
+    }
+
+    return <TodoElement {...todo} completed={!todo.completed} />
+  })
+  // .put('/:id', async ({ cookie: { ronaldo }, params: { id } }) => {
+  //   const todos = await getTodos()
+
+  //   return (
+  //     <div class={"border border-gray-300 rounded-md p-2"}>
+  //       <TodoList todos={todos} />
+  //     </div>
+  //   )
+  // }, {
+  //   params: t.Object({
+  //     id: t.Number()
+  //   })
+  // })
+  .delete('/:id', async ({ params: { id }, set }) => {
+    // remove from the database and return nothing
+    console.log(id)
   }, {
     params: t.Object({
-      id: t.Number()
+      id: t.String()
     })
   })

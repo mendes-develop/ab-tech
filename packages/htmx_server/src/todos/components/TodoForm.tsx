@@ -1,4 +1,5 @@
 import * as elements from 'typed-html';
+import type { Attributes } from 'typed-html'
 
 export const TodoForm = () => {
   return (
@@ -13,12 +14,24 @@ export const TodoForm = () => {
         name="name"
         placeholder="Add todo"
       />
-      <button
-        class="bg-blue-500 text-white rounded-md p-2"
+      <Button
         type="submit"
       >
         Add
-      </button>
+      </Button>
     </form>
   );
 };
+
+export const Button = ({
+  children,
+  class: classNames,
+  ...props
+}: elements.Attributes) => (
+  <button
+    {...props}
+    class={`bg-blue-500 text-white rounded-md p-2 ${classNames}`}
+  >
+    {children}
+  </button>
+);
