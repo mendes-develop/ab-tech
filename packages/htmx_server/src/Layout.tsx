@@ -1,6 +1,7 @@
 import * as elements from 'typed-html';
+import { NavBar } from './todos/components/Navigation';
 
-export const Layout = (props: elements.Children) => `
+export const HTML = (props: elements.Children) => `
   <html>
     <head>
       <title>htmx server</title>
@@ -9,5 +10,19 @@ export const Layout = (props: elements.Children) => `
       <script src="https://cdn.tailwindcss.com"></script>
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
+    
       ${props.children}
 `
+
+export const Layout = (props: elements.Children) => {
+  return (
+    <HTML>
+      <body class={`h-screen`}>
+        <div class="border h-full border-gray-300 rounded-md flex flex-row gap-4 overflow-y-scroll overflow-x-hidden bg-blue-1">
+          <NavBar />
+          {props.children}
+        </div>
+      </body>
+    </HTML>
+  )
+}

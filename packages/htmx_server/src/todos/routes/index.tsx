@@ -4,18 +4,18 @@ import { TodoElement, TodoList } from "../components/Todo";
 import { Todo } from '../types';
 import { TodoForm } from '../components/TodoForm';
 
-const getTodos = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-  const todos = (await response.json() as Todo[])
-  return todos.slice(0, 10)
-}
-
 const todoFactory = (todo: Pick<Todo, "title" | "userId">) => ({
   id: crypto.randomUUID(),
   title: todo.title,
   completed: false,
   userId: todo.userId,
 } as Todo)
+
+const getTodos = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+  const todos = (await response.json() as Todo[])
+  return todos.slice(0, 10)
+}
 
 export const todosRoute = new Elysia({ prefix: '/todos' })
   .onBeforeHandle(async ({ cookie: { ronaldo } }) => {

@@ -25,6 +25,7 @@ export const TodoElement = (todo: Todo) => (
     />
     <div class="flex w-full justify-end items-center">
       <Button
+        class="bg-white border"
         hx-delete={`/todos/${todo.id}`}
         hx-swap={"outerHTML"}
         hx-target={"#todo" + todo.id}
@@ -37,7 +38,7 @@ export const TodoElement = (todo: Todo) => (
 
 export const TodoList = ({ todos }: { todos: Todo[] }) => (
   <div class={"border border-gray-300 rounded-md p-2 flex flex-1  flex-col gap-4 w-full"}>
-    <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+    <h1 x-data="{ message: 'I ❤️ HTMX' }" x-text="message"></h1>
     {todos.map(todo => <TodoElement {...todo} />)}
   </div>
 )
