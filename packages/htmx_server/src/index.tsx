@@ -18,7 +18,7 @@ const app = new Elysia()
   .use(html())
   .use(staticPlugin())
   .get('/', ({ html }) => html(
-    <Layout>
+    <Layout route={"/"}>
       <div
         hx-get="/todos"
         hx-trigger="load"
@@ -34,5 +34,9 @@ const app = new Elysia()
   .use(messagesRoute)
   .listen(PORT)
 
+// app.routes.forEach(route => {
+//   console.log(`🚀 ${route.method} ${route.path}`)
+// })
 
 console.log(`🦊 server is running on ${app.server?.hostname}:${app.server?.port}`)
+

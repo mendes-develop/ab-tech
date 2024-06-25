@@ -8,7 +8,7 @@ export const messagesRoute = new Elysia({ prefix: '/messages' })
   .use(html())
   .get('/', ({ html }) => {
     return html(
-      <Layout>
+      <Layout route="/messages">
         <div>
           <h1>Messages</h1>
           <Counter />

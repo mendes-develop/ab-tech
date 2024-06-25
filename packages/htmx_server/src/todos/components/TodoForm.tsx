@@ -23,6 +23,7 @@ export const TodoForm = ({ error, name = "" }: { error?: string, name?: string }
           name="name"
           value={name}
           placeholder="Add todo"
+          minlength={3}
         />
         {error ? <span class="text-red-500">{error}</span> : null}
         <Button
