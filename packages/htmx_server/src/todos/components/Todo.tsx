@@ -12,7 +12,10 @@ const TrashCan = () => (
 )
 
 export const TodoElement = (todo: Todo) => (
-  <div id={"todo" + todo.id} class={"border border-red-300 p-2 rounded-md"}>
+  <div
+    id={"todo" + todo.id}
+    class={"border border-red-300 p-2 rounded-md"}
+  >
     <p>{todo.id}</p>
     <p>{todo.title}</p>
     <label>Completed </label>
@@ -36,9 +39,14 @@ export const TodoElement = (todo: Todo) => (
   </div>
 )
 
+export const OOBTodoElement = (todo: Todo) => (
+  <div id={"todos"} hx-swap-oob="afterbegin">
+    <TodoElement {...todo} />
+  </div>
+)
+
 export const TodoList = ({ todos }: { todos: Todo[] }) => (
-  <div class={"border border-gray-300 rounded-md p-2 flex flex-1  flex-col gap-4 w-full"}>
-    <h1 x-data="{ message: 'I ❤️ HTMX' }" x-text="message"></h1>
+  <div id="todos" class={"border border-gray-300 rounded-md p-2 flex flex-1  flex-col gap-4 w-full"}>
     {todos.map(todo => <TodoElement {...todo} />)}
   </div>
 )

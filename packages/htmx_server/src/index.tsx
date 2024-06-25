@@ -27,6 +27,9 @@ const app = new Elysia()
       />
     </Layout>
   ))
+  .get("/test", async () => {
+    return "test"
+  })
   .use(todosRoute)
   .use(messagesRoute)
   .listen(PORT)

@@ -1,25 +1,42 @@
 import * as elements from 'typed-html';
 import type { Attributes } from 'typed-html'
 
-export const TodoForm = () => {
+const Loader = () =>
+  <div id="spinner" class="htmx-indicator h-10 w-10">
+    <img src="/public/loading.svg" />
+  </div>
+
+export const TodoForm = ({ error, name = "" }: { error?: string, name?: string }) => {
   return (
-    <form
-      class="flex flex-col gap-2"
-      hx-post="/todos"
-      hx-swap="afterend"
-    >
-      <input
-        class="border border-gray-300 rounded-md p-2"
-        type="text"
-        name="name"
-        placeholder="Add todo"
-      />
-      <Button
-        type="submit"
+    <div id="form">
+      <form
+        class="flex flex-col gap-2"
+        hx-trigger="submit delay:1000ms"
+        hx-post="/todos"
+        hx-swap="outerHTML"
+        hx-target="#form"
+        hx-indicator="#spinner"
       >
-        Add
-      </Button>
-    </form>
+        <input
+          class="border border-gray-300 rounded-md p-2"
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Add todo"
+        />
+        {error ? <span class="text-red-500">{error}</span> : null}
+        <Button
+          type="submit"
+        >
+          <span class="button-text">
+            Add
+          </span>
+        </Button>
+      </form>
+      <Loader />
+      <h1 x-data="{ message: 'I ❤️ HTMX' }" x-text="message"></h1>
+    </div>
+
   );
 };
 
@@ -30,7 +47,7 @@ export const Button = ({
 }: elements.Attributes) => (
   <button
     {...props}
-    class={`bg-blue-500 text-white rounded-md p-2 ${classNames}`}
+    class={`bg-pink-200 border border-gray-300 text-white rounded-md p-2 ${classNames}`}
   >
     {children}
   </button>

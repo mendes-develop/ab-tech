@@ -1,21 +1,21 @@
 import * as elements from 'typed-html';
 import Elysia, { t } from "elysia";
-import { TodoElement, TodoList } from "../components/Todo";
+import { OOBTodoElement, TodoElement, TodoList } from "../components/Todo";
 import { Todo } from '../types';
 import { TodoForm } from '../components/TodoForm';
+import { faker } from '@faker-js/faker';
 
 const todoFactory = (todo: Pick<Todo, "title" | "userId">) => ({
   id: crypto.randomUUID(),
-  title: todo.title,
+  title: todo.title || faker.git.commitMessage(),
   completed: false,
-  userId: todo.userId,
+  userId: todo.userId || 1,
 } as Todo)
 
 const getTodos = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-  const todos = (await response.json() as Todo[])
-  return todos.slice(0, 10)
+  return Array(10).fill({}).map(todoFactory)
 }
+const todos = await getTodos()
 
 export const todosRoute = new Elysia({ prefix: '/todos' })
   .onBeforeHandle(async ({ cookie: { ronaldo } }) => {
@@ -24,8 +24,8 @@ export const todosRoute = new Elysia({ prefix: '/todos' })
     // if the user is not authenticated, send to somewhere else
   })
   .get('/', async ({ cookie: { ronaldo } }) => {
-    const todos = await getTodos()
     console.log(ronaldo.value)
+
 
     return (
       <div class={"flex flex-col flex-1 gap-4 overflow-y-scroll"}>
@@ -34,13 +34,9 @@ export const todosRoute = new Elysia({ prefix: '/todos' })
       </div>
     )
   })
-  .post('/', async ({ body: { name }, cookie: { ronaldo } }) => {
-    if (!name) {
-      return (
-        <div>
-          <h2>Name is required</h2>
-        </div>
-      )
+  .post('/', async ({ error, set, body: { name }, cookie: { ronaldo } }) => {
+    if (!name || name.length < 3) {
+      return error(422, <TodoForm error='Please provide a name' name={name} />)
     }
 
     const newTodo = todoFactory({
@@ -48,21 +44,23 @@ export const todosRoute = new Elysia({ prefix: '/todos' })
       userId: ronaldo.value,
     })
 
-    return <TodoElement {...newTodo} />
+    return (
+      <div>
+        <TodoForm />
+        <OOBTodoElement {...newTodo} />
+      </div>
+    )
   }, {
     body: t.Object({
       name: t.String(),
     })
   })
   .post('/:id/completed', async ({ params: { id }, }) => {
-
-    const todos = await getTodos()
     const todo = todos.find(todo => todo.id == id)
 
     console.log({
       id, todos
     })
-
 
     if (!todo) {
       return (
