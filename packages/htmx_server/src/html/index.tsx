@@ -1,4 +1,7 @@
-<!doctype html>
+
+import * as elements from 'typed-html';
+export const HTML = (props: elements.Children) => (/*html*/`
+  <!doctype html>
 <html lang="pt">
 	<head>
 		<title>htmx server</title>
@@ -10,6 +13,8 @@
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 		<link rel="stylesheet" href="/public/css/styles.css" />
 
+	</head>
+		${props.children}
 		<script>
 			document.addEventListener('DOMContentLoaded', (event) => {
 				document.body.addEventListener('htmx:beforeSend', (evt) => {
@@ -17,11 +22,11 @@
 				});
 
 				document.body.addEventListener('htmx:beforeSwap', (evt) => {
-					console.log(evt);
+					console.log({ evt });
 					evt.detail.shouldSwap = true;
 					evt.detail.isError = false;
 				});
 			});
 		</script>
-	</head>
 </html>
+`)

@@ -1,13 +1,6 @@
 import * as elements from 'typed-html';
 import { NavBar } from './todos/components/Navigation';
-
-const file = Bun.file("./public/html/index.html");
-const Index = await file.text();
-
-export const HTML = (props: elements.Children) => `
-      ${Index}
-      ${props.children}
-`
+import { HTML } from './html';
 
 interface LayoutProps extends elements.Children {
   route: string
