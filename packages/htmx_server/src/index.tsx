@@ -1,6 +1,5 @@
 import { Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
-import type { Attributes } from 'typed-html'
 import * as elements from 'typed-html';
 import { staticPlugin } from '@elysiajs/static'
 import { TodoList } from './todos/components/Todo';
@@ -13,10 +12,12 @@ import { swagger } from '@elysiajs/swagger';
 const PORT = 4000
 const MAX_VIEWS = 5
 
+console.log("🚀 Starting htmx server")
+
 const app = new Elysia()
   .use(swagger())
   .use(html())
-  .use(staticPlugin())
+  .use(staticPlugin({ assets: `${import.meta.dir}/../public` }))
   .get('/', ({ html }) => html(
     <Layout route={"/"}>
       <div
