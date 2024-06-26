@@ -12,7 +12,7 @@ import { swagger } from '@elysiajs/swagger';
 const PORT = 4000
 const MAX_VIEWS = 5
 
-console.log("🚀 Starting htmx server")
+console.log("🚀 Starting htmx server - Final Test")
 
 const app = new Elysia()
   .use(swagger())

@@ -8,8 +8,10 @@ WORKDIR /usr/src/app
 FROM base AS install
 RUN mkdir -p /temp/dev
 # Copy root package.json and lock file
+RUN ls -l /usr/src/app
 COPY ../../package.json ./
 COPY ../../bun.lockb ./
+
 
 # # Copy the api-specific files
 COPY . .
@@ -20,6 +22,6 @@ RUN bun install
 EXPOSE 4000
 
 # it orks, but 
+# CMD [ "ls", "./" ]
 # CMD [ "ls", "./packages/htmx_server/public" ]
-# CMD [ "ls", "./packages/htmx_server/public" ]
-CMD ["bun", "run-htmx"]
+CMD ["bun", "run",  "run-htmx"]
