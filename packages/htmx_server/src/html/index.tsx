@@ -11,6 +11,7 @@ export const HTML = (props: elements.Children) => (/*html*/`
 		<script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 		<link rel="stylesheet" href="/public/css/styles.css" />
 
 	</head>
