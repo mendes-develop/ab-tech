@@ -11,7 +11,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"@faker-js/faker": "^8.4.1",
-		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"autoprefixer": "^10.4.19",
 		"postcss": "^8.4.38",
@@ -23,7 +22,10 @@
 		"node": ">=18"
 	},
 	"packageManager": "bun@1.0.22",
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
 	"dependencies": {
 		"@elysiajs/html": "^1.0.2",
 		"@elysiajs/static": "^1.0.3",

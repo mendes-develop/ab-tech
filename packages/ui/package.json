@@ -20,7 +20,6 @@
 	"devDependencies": {
 		"@chromatic-com/storybook": "^1.5.0",
 		"@repo/api": "*",
-		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"@storybook/addon-essentials": "^8.1.10",
 		"@storybook/addon-interactions": "^8.1.10",

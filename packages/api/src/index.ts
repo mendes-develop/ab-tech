@@ -13,6 +13,6 @@ const app = new Elysia()
 	.use(auth)
 	.listen(4001);
 
-console.log("🦊 server started at http://localhost:4001");
+console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,)
 
 export type App = typeof app;
