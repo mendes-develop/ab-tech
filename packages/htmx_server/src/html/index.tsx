@@ -1,6 +1,5 @@
-
-import * as elements from 'typed-html';
-export const HTML = (props: elements.Children) => (/*html*/`
+import * as elements from "typed-html";
+export const HTML = (props: elements.Children) => /*html*/ `
   <!doctype html>
 <html lang="pt">
 	<head>
@@ -30,4 +29,4 @@ export const HTML = (props: elements.Children) => (/*html*/`
 			});
 		</script>
 </html>
-`)
+`;
