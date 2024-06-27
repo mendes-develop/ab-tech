@@ -1,8 +1,6 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 export const randomNameSlug = () =>
-  faker.person.fullName()
-    .toLowerCase()
-    .replace(/[\s-]/g, '_');
+	faker.person.fullName().toLowerCase().replace(/[\s-]/g, "_");
 
-export const generateComment = () => faker.lorem.words(10)
+export const generateComment = () => faker.lorem.words(10);

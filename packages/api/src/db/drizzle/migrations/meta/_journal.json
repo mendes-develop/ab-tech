@@ -1,27 +1,27 @@
 {
-  "version": "6",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "6",
-      "when": 1717018188600,
-      "tag": "0000_oval_slipstream",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1717024633297,
-      "tag": "0001_whole_deathstrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1717024942653,
-      "tag": "0002_common_winter_soldier",
-      "breakpoints": true
-    }
-  ]
+	"version": "6",
+	"dialect": "postgresql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "6",
+			"when": 1717018188600,
+			"tag": "0000_oval_slipstream",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "6",
+			"when": 1717024633297,
+			"tag": "0001_whole_deathstrike",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "6",
+			"when": 1717024942653,
+			"tag": "0002_common_winter_soldier",
+			"breakpoints": true
+		}
+	]
 }

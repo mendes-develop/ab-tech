@@ -1,1 +1,1 @@
-export * from './VideoListComponent'
+export * from "./VideoListComponent";

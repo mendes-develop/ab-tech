@@ -1,38 +1,35 @@
 {
-  "name": "ab-tech",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "run-htmx": "turbo run dev --filter=@repo/htmx_server"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.8.3",
-    "@faker-js/faker": "^8.4.1",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.4",
-    "turbo": "latest"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "bun@1.0.22",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "dependencies": {
-    "@elysiajs/html": "^1.0.2",
-    "@elysiajs/static": "^1.0.3",
-    "@elysiajs/swagger": "^1.0.5",
-    "axios": "^1.7.2",
-    "elysia": "^1.0.25",
-    "typed-html": "^3.0.1"
-  }
+	"name": "ab-tech",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"run-htmx": "turbo run dev --filter=@repo/htmx_server"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@faker-js/faker": "^8.4.1",
+		"@repo/eslint-config": "*",
+		"@repo/typescript-config": "*",
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.38",
+		"prettier": "^3.2.5",
+		"tailwindcss": "^3.4.4",
+		"turbo": "latest"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "bun@1.0.22",
+	"workspaces": ["apps/*", "packages/*"],
+	"dependencies": {
+		"@elysiajs/html": "^1.0.2",
+		"@elysiajs/static": "^1.0.3",
+		"@elysiajs/swagger": "^1.0.5",
+		"axios": "^1.7.2",
+		"elysia": "^1.0.25",
+		"typed-html": "^3.0.1"
+	}
 }

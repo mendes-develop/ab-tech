@@ -3,14 +3,14 @@ import { VideoList } from "@/components/base/VideoListComponent/VideoListCompone
 import { getCookieUserId } from "@/cookies/cookies";
 
 export default async function Home() {
-  const userId = await getCookieUserId()
+	const userId = await getCookieUserId();
 
-  return (
-    <main className="flex  flex-col items-center justify-between">
-      <div className="w-full max-w-5xl items-center justify-between  text-sm  py-4 p-2">
-        <VideoList userId={userId?.value} />
-        <CreateVideoSheet />
-      </div>
-    </main>
-  );
+	return (
+		<main className="flex  flex-col items-center justify-between">
+			<div className="w-full max-w-5xl items-center justify-between  text-sm  py-4 p-2">
+				<VideoList userId={userId?.value} />
+				<CreateVideoSheet />
+			</div>
+		</main>
+	);
 }

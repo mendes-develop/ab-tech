@@ -1,20 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect } from '@storybook/test';
-import { Button } from './button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { within, userEvent, expect } from "@storybook/test";
+import { Button } from "./button";
 
 // import { Page } from './';Button
 
-
 const meta = {
-  title: 'Example/Ronaldo',
-  component: Button,
-  parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    layout: 'fullscreen',
-  },
-  args: {
-    children: 'Hello World',
-  }
+	title: "Example/Ronaldo",
+	component: Button,
+	parameters: {
+		// More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+		layout: "fullscreen",
+	},
+	args: {
+		children: "Hello World",
+	},
 } satisfies Meta<typeof Button>;
 
 export default meta;

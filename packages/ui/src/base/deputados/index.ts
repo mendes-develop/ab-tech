@@ -1,2 +1,2 @@
-export * from './Deputados';
-export * from './Propositions';
+export * from "./Deputados";
+export * from "./Propositions";
