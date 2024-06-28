@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getVideoComment, getVideos } from "./axios";
 import { getQueryClient } from "@repo/ui/query-provider";
-import { App } from "@repo/api/server";
+import { App, PORT } from "@repo/api/server";
 import { treaty } from "@elysiajs/eden";
 
-const client = treaty<App>("localhost:4001");
+const client = treaty<App>(`localhost:${PORT}`);
 
 async function fetchData() {
 	const resp = await client.auth.login.post({
