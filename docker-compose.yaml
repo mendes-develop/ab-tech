@@ -4,9 +4,11 @@ services:
     htmx_server:
         build:
             context: ./
-            dockerfile: ./packages/htmx_server/Dockerfile
+            dockerfile: ./docker/htmx_server.dockerfile
         ports:
             - '4000:4000'
         restart: always
+        volumes:
+            - ./packages/htmx_server/:/app/packages/htmx_server/
         # environment:
         #     - NODE_ENV=production

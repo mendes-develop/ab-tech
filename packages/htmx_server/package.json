@@ -1,17 +1,25 @@
 {
-	"name": "@repo/htmx_server",
-	"module": "index.ts",
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"scripts": {
-		"dev": "bun --watch src/index.tsx",
-		"start": "bun run src/index.tsx",
-		"build": "tsc",
-		"test": "jest"
-	},
-	"type": "module"
+  "name": "@repo/htmx_server",
+  "module": "index.ts",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.tsx",
+    "start": "bun run src/index.tsx",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "type": "module",
+  "dependencies": {
+    "@elysiajs/html": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
+    "@elysiajs/swagger": "^1.0.5",
+    "elysia": "^1.0.25",
+    "typed-html": "^3.0.1"
+  }
 }
