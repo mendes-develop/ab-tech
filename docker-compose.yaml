@@ -3,12 +3,23 @@ version: '3.8'
 services:
     htmx_server:
         build:
-            context: ./
-            dockerfile: ./docker/htmx_server.dockerfile
+            context: ./packages/htmx_server/
+            dockerfile: ./Dockerfile
+            # dockerfile: ./docker/htmx_server.dockerfile
         ports:
             - '4000:4000'
         restart: always
-        volumes:
-            - ./packages/htmx_server/:/app/packages/htmx_server/
+        # volumes:
+        #     - ./:/app/
         # environment:
         #     - NODE_ENV=production
+    app:
+        image: 'docker.io/jc21/nginx-proxy-manager:latest'
+        restart: unless-stopped
+        ports:
+            - '4000:80'
+        # - '81:81'
+        # - '443:443'
+        volumes:
+            - ./data:/data
+            - ./letsencrypt:/etc/letsencrypt
