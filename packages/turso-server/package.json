@@ -1,23 +1,24 @@
 {
-	"name": "turso-server",
-	"module": "src/index.ts",
-	"type": "module",
-	"scripts": {
-		"dev": "bun run --watch src/index.ts",
-		"generate": "drizzle-kit generate",
-		"migrate": "drizzle-kit migrate"
-	},
-	"devDependencies": {
-		"@types/bun": "latest",
-		"drizzle-kit": "^0.23.0"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"dependencies": {
-		"@elysiajs/jwt": "^1.0.2",
-		"@libsql/client": "^0.7.0",
-		"drizzle-orm": "^0.32.0",
-		"elysia": "^1.0.27"
-	}
+  "name": "turso-server",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.23.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/jwt": "^1.0.2",
+    "@elysiajs/swagger": "^1.0.5",
+    "@libsql/client": "^0.7.0",
+    "drizzle-orm": "^0.32.0",
+    "elysia": "^1.0.27"
+  }
 }

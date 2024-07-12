@@ -8,6 +8,13 @@
       "when": 1720807620365,
       "tag": "0000_quiet_starjammers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1720811789354,
+      "tag": "0001_smiling_darkstar",
+      "breakpoints": true
     }
   ]
 }

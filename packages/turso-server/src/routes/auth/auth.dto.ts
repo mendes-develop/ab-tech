@@ -36,12 +36,15 @@ export class AuthDTO {
     if (!auth) throw new Error("Could not create auth")
     // create a user as well
     const [user] = await userDTO.createUser(auth.id, auth.email);
-    // from here I can need the:
+    // update Auth
+    const [final_auth] = await db.update(authTable).set({
+      userId: user.id,
+    }).where(eq(authTable.id, auth.id)).returning();
     // user id, auth id and user email
     return this.returnToken({
-      authId: auth.id,
-      userId: user.id,
-      email: auth.email,
+      authId: final_auth.id,
+      userId: final_auth.userId!,
+      email: final_auth.email,
     });
   }
 
