@@ -9,13 +9,13 @@
 		"lint": "eslint . --max-warnings 0"
 	},
 	"dependencies": {
-		"@repo/ui": "*",
+		"@ab-labs/ui": "*",
 		"next": "^14.1.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "*",
+		"@ab-labs/typescript-config": "*",
 		"@types/node": "^20.11.24",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",

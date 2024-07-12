@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { QueryProvider } from "@repo/ui/query-provider";
+import { QueryProvider } from "@ab-labs/ui/query-provider";
 import { NavBar } from "@/components/base/NavBar";
 import { getCookieUserId } from "@/cookies/cookies";
-import { Toaster } from "@repo/ui/toaster";
+import { Toaster } from "@ab-labs/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 

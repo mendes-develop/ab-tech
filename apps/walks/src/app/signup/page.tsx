@@ -1,2 +1,2 @@
-import { SignUpPage } from "@repo/ui/signup";
+import { SignUpPage } from "@ab-labs/ui/signup";
 export default SignUpPage;

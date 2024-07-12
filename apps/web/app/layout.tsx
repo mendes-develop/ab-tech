@@ -1,4 +1,4 @@
-import { QueryProvider } from "@repo/ui/query-provider";
+import { QueryProvider } from "@ab-labs/ui/query-provider";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

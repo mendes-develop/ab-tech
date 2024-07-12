@@ -1,0 +1,13 @@
+{
+	"name": "@ab-labs/ui",
+	"version": "0.1.0",
+	"exports": {
+		"./button": "./src/button.tsx",
+		"./card": "./src/card.tsx",
+		"./code": "./src/code.tsx",
+		"./signup": "./src/base/signup/SignUp.tsx",
+		"./toaster": "./@/components/ui/toaster.tsx",
+		"./query-provider": "./src/provider/QueryProvider.tsx",
+		"./deputados": "./src/base/deputados/index.ts"
+	}
+}

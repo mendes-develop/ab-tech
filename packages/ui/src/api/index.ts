@@ -1,4 +1,4 @@
-import { App } from "@repo/api/server";
+import { App } from "@ab-labs/api/server";
 import { treaty } from "@elysiajs/eden";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "../../@/components/ui/use-toast";

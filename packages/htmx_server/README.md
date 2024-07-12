@@ -1,4 +1,4 @@
-# @repo/htmx_server
+# @ab-labs/htmx_server
 
 To install dependencies:
 

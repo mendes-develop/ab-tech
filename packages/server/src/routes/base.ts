@@ -32,7 +32,7 @@ export const base_app = new Elysia()
 
 			if (accessPayload) {
 				console.log("access valid");
-				return { user: accessPayload };
+				return { user: accessPayload, gabineteId: 123 };
 			}
 
 			if (refreshPayload && refreshPayload.auth_id && refreshPayload.user_id) {

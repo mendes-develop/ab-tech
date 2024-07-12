@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getVideoComment, getVideos } from "./axios";
-import { getQueryClient } from "@repo/ui/query-provider";
-import { App, PORT } from "@repo/api/server";
+import { getQueryClient } from "@ab-labs/ui/query-provider";
+import { App, PORT } from "@ab-labs/api/server";
 import { treaty } from "@elysiajs/eden";
 
 const client = treaty<App>(`localhost:${PORT}`);

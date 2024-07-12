@@ -19,3 +19,5 @@ console.log(
 );
 
 export type App = typeof app;
+
+export const ronaldo = 10;

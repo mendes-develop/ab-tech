@@ -1,7 +1,7 @@
 import axios from "axios";
 import { treaty } from "@elysiajs/eden";
-import { App } from "@repo/api/server";
-// import { App } from "@repo/server/app";
+import { App } from "@ab-labs/api/server";
+// import { App } from "@ab-labs/server/app";
 
 const client = treaty<App>("localhost:3000");
 

@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	transpilePackages: ["@repo/api", "@repo/ui"],
+	transpilePackages: ['@ab-labs/api', '@ab-labs/ui'],
 	images: {
 		remotePatterns: [
 			{
-				hostname: "api.dicebear.com",
+				hostname: 'api.dicebear.com',
 			},
 		],
 	},

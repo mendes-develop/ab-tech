@@ -1,7 +1,7 @@
 import axios from "axios";
 import { randomNameSlug } from "../faker";
 import { getCookieUserId } from "@/cookies/cookies";
-import { App } from "@repo/api/server";
+import { App } from "@ab-labs/api/server";
 import { treaty } from "@elysiajs/eden";
 
 type CreateVideoInput = {

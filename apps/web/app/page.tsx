@@ -1,4 +1,4 @@
-import { DeputadosList } from "@repo/ui/deputados";
+import { DeputadosList } from "@ab-labs/ui/deputados";
 
 export default async function Page() {
 	// const data = await getDeputados()
