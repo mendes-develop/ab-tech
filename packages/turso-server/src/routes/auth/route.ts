@@ -1,7 +1,6 @@
 import { Elysia, t } from "elysia";
-import { authTable } from "../../db/schema";
 import { AuthDTO } from "./auth.dto";
-import { jwt } from '@elysiajs/jwt';
+import { JWTRefreshToken, JWToken } from "../../plugins/jwt";
 
 const authDTO = new AuthDTO();
 
@@ -13,20 +12,8 @@ const body = t.Object({
 })
 
 export const authRoute = new Elysia({ prefix: "/auth" })
-  .use(
-    jwt({
-      name: 'refresh_token',
-      secret: 'Fischl von Luftschloss Narfidort',
-      expiresIn: '1w',
-    })
-  )
-  .use(
-    jwt({
-      name: 'jwt_token',
-      secret: 'Fischl von Luftschloss Narfidort',
-      expiresIn: '15m',
-    })
-  )
+  .use(JWTRefreshToken)
+  .use(JWToken)
   .post("/signup", async ({ body, error, jwt_token, refresh_token }) => {
     // get the email, try to find the email
     const [email] = await authDTO.getAuthByEmail(body.email);
