@@ -4,7 +4,9 @@
 	"type": "module",
 	"exports": {
 		"./authRoute": "./src/routes/auth/route.ts",
-		"./DBConnection": "./src/db/connection.ts"
+		"./DBConnection": "./src/db/connection.ts",
+		"./drizzleConfig": "./drizzle.config.ts",
+		"./schemas": "./src/db/schema.ts"
 	},
 	"scripts": {
 		"dev": "bun run --watch src/index.ts",
