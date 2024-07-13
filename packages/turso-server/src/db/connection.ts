@@ -11,3 +11,26 @@ const client = createClient({
 });
 
 export const db = drizzle(client);
+
+export class DBConnection {
+  url: string;
+  authToken: string;
+
+  constructor(url: string, authToken: string) {
+    this.url = url;
+    this.authToken = authToken;
+  }
+
+  get client() {
+    return createClient({
+      url: this.url,
+      authToken: this.authToken
+    });
+  }
+
+  get db() {
+    return drizzle(this.client);
+  }
+}
+
+export const rootdb = new DBConnection(process.env.TURSO_CONNECTION_URL!, process.env.TURSO_AUTH_TOKEN!);

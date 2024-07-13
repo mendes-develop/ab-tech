@@ -2,6 +2,10 @@
 	"name": "@repo/turso-server",
 	"module": "src/index.ts",
 	"type": "module",
+	"exports": {
+		"./authRoute": "./src/routes/auth/route.ts",
+		"./DBConnection": "./src/db/connection.ts"
+	},
 	"scripts": {
 		"dev": "bun run --watch src/index.ts",
 		"generate": "drizzle-kit generate",
