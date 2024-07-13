@@ -1,18 +1,14 @@
 // import { db } from '@/src/db/drizzle/dbConnection';
 import { eq } from "drizzle-orm";
-// import { db } from "../../db/connection";
+import { db } from "../../db/connection";
 import { authTable, type InsertAuth } from "../../db/schema";
 import { UsersDTO } from "../users/usersDTO";
-import type { DBConnection } from "../../db/connection";
 
 const userDTO = new UsersDTO();
 
 type CreateAuthArgs = Pick<InsertAuth, 'email' | 'password'>;
 export class AuthDTO {
-  connection: DBConnection;
-
-  constructor(connection: DBConnection) {
-    this.connection = connection;
+  constructor() {
   }
 
   private hashPassword(password: string) {
@@ -33,7 +29,7 @@ export class AuthDTO {
 
   async createAuth({ email, password }: CreateAuthArgs) {
     const hashPassword = await this.hashPassword(password);
-    const [auth] = await this.connection.db.insert(authTable)
+    const [auth] = await db.insert(authTable)
       .values({
         email,
         password: hashPassword,
@@ -43,7 +39,7 @@ export class AuthDTO {
     // create a user as well
     const [user] = await userDTO.createUser(auth.id, auth.email);
     // update Auth
-    const [final_auth] = await this.connection.db.update(authTable).set({
+    const [final_auth] = await db.update(authTable).set({
       userId: user.id,
     }).where(eq(authTable.id, auth.id)).returning();
     // user id, auth id and user email
@@ -55,7 +51,7 @@ export class AuthDTO {
   }
 
   async getAuthByEmail(email: string) {
-    return this.connection.db.select().from(authTable)
+    return db.select().from(authTable)
       .where(eq(authTable.email, email));
   }
 
