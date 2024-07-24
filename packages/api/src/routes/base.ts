@@ -4,7 +4,7 @@
 import { Cookie, Elysia, t } from "elysia";
 // import { supabaseClient } from "../db/supabase/supabaseClient";
 // import Elysia from "elysia";
-import { jwtMiddleware, refreshMiddleware } from "../plugins/jtw.js";
+import { jwtMiddleware, refreshMiddleware } from "../plugins/jtw";
 
 const storeCookie = <T>(cookie: Cookie<T>, JTW_TOKEN: string) => {
 	cookie.set({

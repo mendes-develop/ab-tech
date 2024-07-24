@@ -1,6 +1,6 @@
 import { DeputadosList } from "@ab-labs/ui/deputados";
 
-export default async function Page() {
+export default function Page() {
 	// const data = await getDeputados()
 	// console.log(data)
 	return (

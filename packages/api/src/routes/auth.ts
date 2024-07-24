@@ -1,8 +1,8 @@
 import { Elysia, t, Cookie } from "elysia";
-import { base_app } from "./base.js";
-import { SwaggerTags } from "../plugins/jtw.js";
-import { supabaseClient } from "../db/supabase/supabaseClient.js";
-import { createUser, getUser } from "../db/drizzle/orm/users/user.js";
+import { base_app } from "./base";
+import { SwaggerTags } from "../plugins/jtw";
+import { supabaseClient } from "../db/supabase/supabaseClient";
+import { createUser, getUser } from "../db/drizzle/orm/users/user";
 // import { base_app } from "./base";
 // import { createUser, getUser } from "../db/drizzle/orm/users/user";
 // import { supabaseClient } from "../db/supabase/supabaseClient";

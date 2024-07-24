@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { auth } from "./routes/auth.js";
+import { auth } from "./routes/auth";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
 

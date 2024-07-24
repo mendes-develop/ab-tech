@@ -1,19 +1,22 @@
 {
-	"name": "ab-tech",
-	"engines": {
-		"node": ">=18"
-	},
-	"packageManager": "bun@1.0.22",
-	"private": true,
-	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
-		"lint": "turbo lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
-		"run-htmx": "turbo run dev --filter=@ab-labs/htmx_server"
-	},
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	]
+  "name": "ab-tech",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "bun@1.0.22",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "run-htmx": "turbo run dev --filter=@ab-labs/htmx_server"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "tailwindcss": "^3.4.6"
+  }
 }
